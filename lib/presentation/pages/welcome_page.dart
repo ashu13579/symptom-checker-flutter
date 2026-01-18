@@ -13,19 +13,22 @@ class _WelcomePageState extends State<WelcomePage> {
 
   final List<OnboardingContent> _pages = [
     OnboardingContent(
-      title: 'Your health\nmade simple',
-      description: 'Get personalized health insights based on your symptoms',
-      color: Color(0xFF4A90E2),
+      title: 'Understand your\nsymptoms',
+      description: 'Get helpful insights about what your body might be experiencing',
+      icon: Icons.health_and_safety_outlined,
+      color: Color(0xFF26A69A),
     ),
     OnboardingContent(
-      title: 'Tailored care\nfor your unique\nneeds',
-      description: 'Understand what your body is telling you',
-      color: Color(0xFF5BA3F5),
+      title: 'Simple &\ninformative',
+      description: 'Easy-to-understand guidance based on your input',
+      icon: Icons.lightbulb_outline,
+      color: Color(0xFF42A5F5),
     ),
     OnboardingContent(
-      title: 'Your health\nmade simple\ntoday',
-      description: 'Track and monitor your health journey',
-      color: Color(0xFF6BB6FF),
+      title: 'Your wellness\njourney',
+      description: 'Track and learn about your health over time',
+      icon: Icons.favorite_border,
+      color: Color(0xFF66BB6A),
     ),
   ];
 
@@ -38,34 +41,36 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
-            // Page Indicator
+            // Skip Button
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  _pages.length,
-                  (index) => AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    width: _currentPage == index ? 24 : 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: _currentPage == index
-                          ? Theme.of(context).colorScheme.primary
-                          : Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(4),
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/body-selection');
+                    },
+                    child: Text(
+                      'Skip',
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
 
             // PageView
             Expanded(
+              flex: 3,
               child: PageView.builder(
                 controller: _pageController,
                 onPageChanged: (index) {
@@ -80,102 +85,162 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
             ),
 
-            // Bottom Section
+            // Page Indicator
             Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                children: [
-                  // Main Headline
-                  Text(
-                    'Understand what your body is telling you',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          height: 1.3,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Disclaimer
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    ),
+              padding: const EdgeInsets.symmetric(vertical: 24.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  _pages.length,
+                  (index) => AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    width: _currentPage == index ? 32 : 8,
+                    height: 8,
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(8),
+                      color: _currentPage == index
+                          ? Color(0xFF26A69A)
+                          : Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                    child: Text(
-                      'For informational purposes only — not a medical diagnosis',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.grey.shade700,
-                            fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ),
+
+            // Bottom Section
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    // Main Headline
+                    Text(
+                      'Where do you feel discomfort?',
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey.shade800,
+                            height: 1.3,
                           ),
                       textAlign: TextAlign.center,
                     ),
-                  ),
-                  const SizedBox(height: 24),
+                    const SizedBox(height: 12),
 
-                  // Primary CTA
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/body-selection');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                    // Subtext
+                    Text(
+                      'We'll help you understand what might be happening',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey.shade600,
+                        height: 1.4,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Disclaimer
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.blue.shade50,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: Colors.blue.shade100,
                         ),
                       ),
-                      child: const Text(
-                        'Start symptom check',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.info_outline,
+                            color: Colors.blue.shade700,
+                            size: 18,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              'For informational purposes only',
+                              style: TextStyle(
+                                color: Colors.blue.shade800,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+
+                    // Primary CTA
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/body-selection');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          backgroundColor: Color(0xFF26A69A),
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: const Text(
+                          'Get Started',
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.5,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-                  // Secondary Links
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          // Navigate to privacy policy
-                        },
-                        child: Text(
-                          'Privacy',
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
+                    // Secondary Links
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            // Navigate to privacy policy
+                          },
+                          child: Text(
+                            'Privacy',
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
-                      ),
-                      Text(
-                        ' • ',
-                        style: TextStyle(color: Colors.grey.shade400),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          // Navigate to terms
-                        },
-                        child: Text(
-                          'Terms',
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
+                        Text(
+                          ' • ',
+                          style: TextStyle(color: Colors.grey.shade400),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // Navigate to terms
+                          },
+                          child: Text(
+                            'Terms',
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -186,40 +251,47 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Widget _buildPage(OnboardingContent content) {
     return Container(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 32.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Placeholder for medical imagery
+          // Icon Container
           Container(
-            width: 200,
-            height: 200,
+            width: 140,
+            height: 140,
             decoration: BoxDecoration(
               color: content.color.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(20),
+              shape: BoxShape.circle,
             ),
             child: Icon(
-              Icons.medical_services_outlined,
-              size: 100,
+              content.icon,
+              size: 70,
               color: content.color,
             ),
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 48),
+          
+          // Title
           Text(
             content.title,
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: content.color,
-                  height: 1.2,
-                ),
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey.shade800,
+              height: 1.2,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
+          
+          // Description
           Text(
             content.description,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey.shade600,
-                ),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.grey.shade600,
+              height: 1.5,
+            ),
             textAlign: TextAlign.center,
           ),
         ],
@@ -231,11 +303,13 @@ class _WelcomePageState extends State<WelcomePage> {
 class OnboardingContent {
   final String title;
   final String description;
+  final IconData icon;
   final Color color;
 
   OnboardingContent({
     required this.title,
     required this.description,
+    required this.icon,
     required this.color,
   });
 }
