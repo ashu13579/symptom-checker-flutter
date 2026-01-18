@@ -374,7 +374,7 @@ class _BodySelectionPageState extends State<BodySelectionPage> {
 
     final symptomData = SymptomData(
       bodyRegion: primaryRegion,
-      timestamp: DateTime.now().toIso8601String(),
+      timestamp: DateTime.now(),
     );
 
     context.read<SymptomBloc>().add(SelectBodyRegion(symptomData));
