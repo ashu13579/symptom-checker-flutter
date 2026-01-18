@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:symptom_checker/data/models/symptom_data.dart';
 import 'package:symptom_checker/presentation/bloc/symptom_bloc.dart';
+import 'package:symptom_checker/core/constants/body_regions.dart';
 
 class SymptomInputPage extends StatefulWidget {
   const SymptomInputPage({super.key});
