@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:symptom_checker/core/constants/body_regions.dart';
-import 'package:symptom_checker/data/models/symptom_data.dart';
 import 'package:symptom_checker/presentation/bloc/symptom_bloc.dart';
 
 class BodySelectionPage extends StatefulWidget {
@@ -372,12 +371,8 @@ class _BodySelectionPageState extends State<BodySelectionPage> {
     // Use the first selected region as primary
     final primaryRegion = _selectedRegions.first;
 
-    final symptomData = SymptomData(
-      bodyRegion: primaryRegion,
-      timestamp: DateTime.now(),
-    );
-
-    context.read<SymptomBloc>().add(SelectBodyRegion(symptomData));
+    // Pass only the BodyRegion to the event
+    context.read<SymptomBloc>().add(SelectBodyRegion(primaryRegion));
     Navigator.pushNamed(context, '/symptom-input');
   }
 }
