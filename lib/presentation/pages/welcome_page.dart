@@ -130,7 +130,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
                     // Subtext
                     Text(
-                      'We'll help you understand what might be happening',
+                      'We\'ll help you understand what might be happening',
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.grey.shade600,
