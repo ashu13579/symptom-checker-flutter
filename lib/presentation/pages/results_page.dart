@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:symptom_checker/presentation/bloc/symptom_bloc.dart';
 import 'package:symptom_checker/core/theme/app_theme.dart';
+import 'package:symptom_checker/core/constants/body_regions.dart';
 
 class ResultsPage extends StatelessWidget {
   const ResultsPage({super.key});
