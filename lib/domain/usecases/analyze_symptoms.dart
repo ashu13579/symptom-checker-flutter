@@ -171,7 +171,7 @@ class AnalyzeSymptomsUseCase {
         symptoms.contains(AssociatedSymptom.fever) ||
         symptoms.contains(AssociatedSymptom.vomiting) ||
         symptoms.contains(AssociatedSymptom.dizziness) ||
-        data.duration == Duration.weeks) {
+        data.duration == SymptomDuration.weeks) {
       return UrgencyLevel.medium;
     }
     
