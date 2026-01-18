@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:symptom_checker/core/theme/app_theme.dart';
-import 'package:symptom_checker/presentation/pages/home_page.dart';
-import 'package:symptom_checker/presentation/pages/body_map_page.dart';
+import 'package:symptom_checker/presentation/pages/welcome_page.dart';
+import 'package:symptom_checker/presentation/pages/body_selection_page.dart';
 import 'package:symptom_checker/presentation/pages/symptom_input_page.dart';
 import 'package:symptom_checker/presentation/pages/results_page.dart';
 import 'package:symptom_checker/presentation/bloc/symptom_bloc.dart';
@@ -34,8 +34,8 @@ class SymptomCheckerApp extends StatelessWidget {
           themeMode: ThemeMode.system,
           initialRoute: '/',
           routes: {
-            '/': (context) => const HomePage(),
-            '/body-map': (context) => const BodyMapPage(),
+            '/': (context) => const WelcomePage(),
+            '/body-selection': (context) => const BodySelectionPage(),
             '/symptom-input': (context) => const SymptomInputPage(),
             '/results': (context) => const ResultsPage(),
           },
