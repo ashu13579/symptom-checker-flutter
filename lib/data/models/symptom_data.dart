@@ -11,7 +11,7 @@ enum PainType {
   cramping,
 }
 
-enum Duration {
+enum SymptomDuration {
   minutes,
   hours,
   days,
@@ -38,7 +38,7 @@ class SymptomData extends Equatable {
   final BodyRegion bodyRegion;
   final PainType? painType;
   final int? intensity; // 1-10
-  final Duration? duration;
+  final SymptomDuration? duration;
   final int? durationValue;
   final Onset? onset;
   final List<Trigger> triggers;
@@ -65,7 +65,7 @@ class SymptomData extends Equatable {
     BodyRegion? bodyRegion,
     PainType? painType,
     int? intensity,
-    Duration? duration,
+    SymptomDuration? duration,
     int? durationValue,
     Onset? onset,
     List<Trigger>? triggers,
