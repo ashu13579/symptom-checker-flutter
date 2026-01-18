@@ -41,7 +41,7 @@ class PainType(str, Enum):
     throbbing = "throbbing"
     cramping = "cramping"
 
-class Duration(str, Enum):
+class SymptomDuration(str, Enum):
     minutes = "minutes"
     hours = "hours"
     days = "days"
@@ -95,7 +95,7 @@ class SymptomDataRequest(BaseModel):
     bodyRegion: BodyRegion
     painType: Optional[PainType] = None
     intensity: Optional[int] = None
-    duration: Optional[Duration] = None
+    duration: Optional[SymptomDuration] = None
     durationValue: Optional[int] = None
     onset: Optional[Onset] = None
     triggers: List[Trigger] = []
@@ -246,7 +246,7 @@ def calculate_urgency(data: SymptomDataRequest) -> UrgencyLevel:
         AssociatedSymptom.fever in symptoms or
         AssociatedSymptom.vomiting in symptoms or
         AssociatedSymptom.dizziness in symptoms or
-        data.duration == Duration.weeks):
+        data.duration == SymptomDuration.weeks):
         return UrgencyLevel.medium
     
     return UrgencyLevel.low
