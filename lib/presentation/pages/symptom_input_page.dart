@@ -13,7 +13,7 @@ class SymptomInputPage extends StatefulWidget {
 class _SymptomInputPageState extends State<SymptomInputPage> {
   PainType? _painType;
   int _intensity = 5;
-  Duration? _duration;
+  SymptomDuration? _duration;
   int _durationValue = 1;
   Onset? _onset;
   final Set<Trigger> _triggers = {};
@@ -143,13 +143,13 @@ class _SymptomInputPageState extends State<SymptomInputPage> {
                     const SizedBox(width: 16),
                     Expanded(
                       flex: 3,
-                      child: DropdownButtonFormField<Duration>(
+                      child: DropdownButtonFormField<SymptomDuration>(
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Unit',
                         ),
                         value: _duration,
-                        items: Duration.values.map((duration) {
+                        items: SymptomDuration.values.map((duration) {
                           return DropdownMenuItem(
                             value: duration,
                             child: Text(_getDurationLabel(duration)),
@@ -327,7 +327,7 @@ class _SymptomInputPageState extends State<SymptomInputPage> {
     return type.name[0].toUpperCase() + type.name.substring(1);
   }
 
-  String _getDurationLabel(Duration duration) {
+  String _getDurationLabel(SymptomDuration duration) {
     return duration.name[0].toUpperCase() + duration.name.substring(1);
   }
 
